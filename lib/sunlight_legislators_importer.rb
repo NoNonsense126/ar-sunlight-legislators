@@ -2,13 +2,21 @@ require 'csv'
 
 class SunlightLegislatorsImporter
   def self.import(filename)
+    puts Dir.pwd
     csv = CSV.new(File.open(filename), :headers => true)
     csv.each do |row|
+      test = Politician.new
       row.each do |field, value|
-        # TODO: begin
-        raise NotImplementedError, "TODO: figure out what to do with this row and do it!"
-        # TODO: end
+        if field == "in_office"
+          if value == "1"
+            value = true
+          else
+            value = false
+          end
+        end
+        test.send("#{field}=", value)
       end
+      test.save
     end
   end
 end

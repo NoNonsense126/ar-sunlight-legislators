@@ -8,9 +8,22 @@ task "db:create" do
   touch 'db/ar-sunlight-legislators.sqlite3'
 end
 
+desc "import data into db"
+task "db:import" do
+  require_relative 'app'
+  file_name = 'db/data/legislators.csv'
+  SunlightLegislatorsImporter.import(file_name)
+end
+
+
 desc "drop the database"
 task "db:drop" do
   rm_f 'db/ar-sunlight-legislators.sqlite3'
+end
+
+desc "loads console with files"
+task "db:console" do
+  exec "irb -r./app.rb"
 end
 
 desc "migrate the database (options: VERSION=x, VERBOSE=false, SCOPE=blog)."
