@@ -15,6 +15,18 @@ task "db:import" do
   SunlightLegislatorsImporter.import(file_name)
 end
 
+desc "update type from title"
+task "db:type_to_title" do
+  require_relative 'app'
+  Politician.all.each do |politician|
+    if politician.title == "Rep"
+      politician.type = "Representative"
+    elsif politician.title == "Sen"
+      politician.type = "Senator"
+    end
+    politician.save
+  end
+end
 
 desc "drop the database"
 task "db:drop" do

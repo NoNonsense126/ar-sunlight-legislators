@@ -3,8 +3,11 @@ require 'sqlite3'
 
 APP_ROOT = Pathname.new(File.dirname(File.expand_path(__FILE__)))
 
+
 require APP_ROOT.join('app', 'models', 'politician')
 require APP_ROOT.join('lib', 'sunlight_legislators_importer')
+require APP_ROOT.join('app', 'models', 'senator')
+require APP_ROOT.join('app', 'models', 'representative')
 
 class FindInfo
 
@@ -72,6 +75,3 @@ class FindInfo
 
 end
 
-FindInfo.total_congresspeople
-FindInfo.delete_inactive_member
-FindInfo.total_congresspeople
