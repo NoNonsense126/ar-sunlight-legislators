@@ -28,6 +28,13 @@ task "db:type_to_title" do
   end
 end
 
+desc "import last 10 twitter from politician"
+task :import_tweeter, [:arg1] do |t, args|
+  require_relative 'app'
+  TwitterImporter.login_client
+  TwitterImporter.get_last_10_tweets(args[:arg1])
+end
+
 desc "drop the database"
 task "db:drop" do
   rm_f 'db/ar-sunlight-legislators.sqlite3'

@@ -7,7 +7,9 @@ APP_ROOT = Pathname.new(File.dirname(File.expand_path(__FILE__)))
 require APP_ROOT.join('app', 'models', 'politician')
 require APP_ROOT.join('lib', 'sunlight_legislators_importer')
 require APP_ROOT.join('app', 'models', 'senator')
+require APP_ROOT.join('app', 'models', 'tweet')
 require APP_ROOT.join('app', 'models', 'representative')
+require APP_ROOT.join('lib', 'twitter_importer')
 
 class FindInfo
 
